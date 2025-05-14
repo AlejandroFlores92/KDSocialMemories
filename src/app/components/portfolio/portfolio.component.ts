@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PortfolioItem } from '../../models/portfolio-item.model';
 
@@ -9,56 +9,91 @@ import { PortfolioItem } from '../../models/portfolio-item.model';
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent implements OnInit, AfterViewInit {
   portfolioItems: PortfolioItem[] = [
     {
       id: 1,
-      title: 'Social Media Campaign',
-      description: 'A successful digital marketing campaign for a major brand',
-      imageUrl: 'assets/portfolio/social-media.jpg',
-      category: 'Social Media',
-      link: '#'
+      title: 'Ceremonia de Boda',
+      description: 'Momentos mágicos en video',
+      type: 'video',
+      mediaUrl: 'assets/videos/8776123-uhd_3840_2160_25fps.mp4',
+      thumbnailUrl: 'assets/images/boda1.jpg',
+      category: 'Bodas'
     },
     {
       id: 2,
-      title: 'Video Production',
-      description: 'Cinematic product showcase video',
-      imageUrl: 'assets/portfolio/video.jpg',
-      category: 'Video',
-      link: '#'
+      title: 'Celebración Romántica',
+      description: 'Historia de amor en movimiento',
+      type: 'video',
+      mediaUrl: 'assets/videos/8776998-uhd_2160_3840_25fps.mp4',
+      thumbnailUrl: 'assets/images/boda2.jpg',
+      category: 'Bodas'
     },
     {
       id: 3,
-      title: 'Content Strategy',
-      description: 'Complete content strategy for an e-commerce platform',
-      imageUrl: 'assets/portfolio/strategy.jpg',
-      category: 'Strategy',
-      link: '#'
+      title: 'Momentos Únicos',
+      description: 'Historias de amor en imágenes',
+      type: 'image',
+      mediaUrl: 'assets/images/boda3.jpg',
+      category: 'Bodas'
     },
     {
       id: 4,
-      title: 'Brand Photography',
-      description: 'Professional photography for brand identity',
-      imageUrl: 'assets/portfolio/photography.jpg',
-      category: 'Photography',
-      link: '#'
+      title: 'El Gran Día',
+      description: 'Memorias que durarán toda la vida',
+      type: 'image',
+      mediaUrl: 'assets/images/boda4.jpg',
+      category: 'Bodas'
     }
   ];
 
   filteredItems: PortfolioItem[] = [];
-  categories: string[] = ['All', 'Social Media', 'Video', 'Strategy', 'Photography'];
-  selectedCategory: string = 'All';
+  categories: string[] = ['Todos', 'Bodas', 'Eventos', 'Sesiones'];
+  selectedCategory: string = 'Todos';
 
   ngOnInit() {
     this.filteredItems = this.portfolioItems;
   }
 
+  ngAfterViewInit() {
+    this.setupVideoObservers();
+  }
+
+  private setupVideoObservers() {
+    const options = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            console.log('Video playback failed');
+          });
+        } else {
+          video.pause();
+        }
+      });
+    }, options);
+
+    // Observe all videos
+    setTimeout(() => {
+      const videos = document.querySelectorAll('.portfolio-item video');
+      videos.forEach(video => observer.observe(video));
+    }, 100);
+  }
+
   filterItems(category: string) {
     this.selectedCategory = category;
-    if (category === 'All') {
+    if (category === 'Todos') {
       this.filteredItems = this.portfolioItems;
     } else {
       this.filteredItems = this.portfolioItems.filter(item => item.category === category);
     }
+    // Re-setup observers after filtering
+    setTimeout(() => this.setupVideoObservers(), 100);
   }
 }

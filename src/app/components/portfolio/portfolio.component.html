@@ -1,7 +1,7 @@
 <section class="portfolio" id="portfolio">
   <div class="container">
-    <h2>My Portfolio</h2>
-    <p class="section-description">Check out some of my best work</p>
+    <h2>Nuestro Portafolio</h2>
+    <p class="section-description">Capturando momentos inolvidables</p>
     
     <div class="filters">
       <button 
@@ -13,16 +13,30 @@
     </div>
 
     <div class="portfolio-grid">
-      <div class="portfolio-item" *ngFor="let item of filteredItems">
-        <div class="portfolio-image">
-          <img [src]="item.imageUrl" [alt]="item.title">
-          <div class="overlay">
-            <h3>{{item.title}}</h3>
-            <p>{{item.description}}</p>
-            <a [href]="item.link" target="_blank" class="view-project" *ngIf="item.link">
-              View Project
-            </a>
-          </div>
+      <div class="portfolio-item" *ngFor="let item of filteredItems" [class.video-item]="item.type === 'video'">
+        <div class="media-container">
+          <ng-container [ngSwitch]="item.type">
+            <!-- Image content -->
+            <img *ngSwitchCase="'image'"
+                 [src]="item.mediaUrl"
+                 [alt]="item.title"
+                 loading="lazy">
+            
+            <!-- Video content with optimized loading -->
+            <video *ngSwitchCase="'video'"
+                   [poster]="item.thumbnailUrl"
+                   muted
+                   loop
+                   playsinline
+                   preload="metadata"
+                   loading="lazy">
+              <source [src]="item.mediaUrl" type="video/mp4">
+              Tu navegador no soporta videos HTML5.
+            </video>
+            
+          </ng-container>
+
+          
         </div>
       </div>
     </div>

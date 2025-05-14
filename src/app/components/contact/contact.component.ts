@@ -9,8 +9,8 @@ import { FormsModule } from '@angular/forms';
   template: `
     <section class="contact" id="contact">
       <div class="container">
-        <h2>Get in Touch</h2>
-        <p class="section-description">Let's discuss your next project</p>
+        <h2>Contacto</h2>
+        <p class="section-description">¡Hablemos de tu próximo proyecto!</p>
         
         <div class="contact-content">
           <div class="contact-info">
@@ -18,34 +18,32 @@ import { FormsModule } from '@angular/forms';
               <i class="fas fa-envelope"></i>
               <div>
                 <h3>Email</h3>
-                <p>hello&#64;contentcreator.com</p>
+                <p>kdsocialmemories&#64;gmail.com</p>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-phone"></i>
               <div>
-                <h3>Phone</h3>
-                <p>+1 (555) 123-4567</p>
+                <h3>Teléfono</h3>
+                <p>+52 (813) 259-9375</p>
               </div>
             </div>
             <div class="info-item">
               <i class="fas fa-location-dot"></i>
               <div>
-                <h3>Location</h3>
-                <p>Los Angeles, CA</p>
+                <h3>Ubicación</h3>
+                <p>Monterrey, MX</p>
               </div>
             </div>
             <div class="social-links">
-              <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-              <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+              <a href="https://www.instagram.com/kdsocialmemories/" target="" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.tiktok.com/@kdsocialmemories" target="" aria-label="Tik-Tok"><i class="fab fa-tiktok"></i></a>
             </div>
           </div>
 
           <form class="contact-form" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name">Nombre</label>
               <input 
                 type="text" 
                 id="name" 
@@ -65,7 +63,7 @@ import { FormsModule } from '@angular/forms';
             </div>
 
             <div class="form-group">
-              <label for="subject">Subject</label>
+              <label for="subject">Asunto</label>
               <input 
                 type="text" 
                 id="subject" 
@@ -75,7 +73,7 @@ import { FormsModule } from '@angular/forms';
             </div>
 
             <div class="form-group">
-              <label for="message">Message</label>
+              <label for="message">Mensaje</label>
               <textarea 
                 id="message" 
                 [(ngModel)]="formData.message" 
@@ -85,7 +83,7 @@ import { FormsModule } from '@angular/forms';
             </div>
 
             <button type="submit" [disabled]="submitting">
-              {{ submitting ? 'Sending...' : 'Send Message' }}
+              {{ submitting ? 'Enviando...' : 'Enviar Mensaje' }}
             </button>
           </form>
         </div>
@@ -95,7 +93,7 @@ import { FormsModule } from '@angular/forms';
   styles: [`
     .contact {
       padding: 6rem 0;
-      background: white;
+      background: var(--white-color);
 
       .container {
         max-width: 1200px;
@@ -106,13 +104,13 @@ import { FormsModule } from '@angular/forms';
       h2 {
         text-align: center;
         font-size: 2.5rem;
-        color: #333;
+        color: var(--text-color);
         margin-bottom: 1rem;
       }
 
       .section-description {
         text-align: center;
-        color: #666;
+        color: var(--primary-color);
         margin-bottom: 4rem;
         font-size: 1.2rem;
       }
@@ -121,6 +119,10 @@ import { FormsModule } from '@angular/forms';
         display: grid;
         grid-template-columns: 1fr 2fr;
         gap: 4rem;
+        background: var(--secondary-color);
+        border-radius: 15px;
+        padding: 3rem;
+        box-shadow: 0 5px 15px rgba(100, 94, 90, 0.1);
       }
 
       .contact-info {
@@ -132,25 +134,31 @@ import { FormsModule } from '@angular/forms';
 
           i {
             font-size: 1.5rem;
-            color: #007bff;
+            color: var(--primary-color);
             width: 40px;
             height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0, 123, 255, 0.1);
+            background: var(--white-color);
             border-radius: 50%;
+            transition: all 0.3s ease;
           }
 
           h3 {
             margin: 0;
             font-size: 1.2rem;
-            color: #333;
+            color: var(--text-color);
           }
 
           p {
             margin: 0.5rem 0 0;
-            color: #666;
+            color: var(--primary-color);
+          }
+
+          &:hover i {
+            background: var(--primary-color);
+            color: var(--white-color);
           }
         }
 
@@ -163,16 +171,18 @@ import { FormsModule } from '@angular/forms';
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: #007bff;
-            color: white;
+            background: var(--white-color);
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
 
             &:hover {
-              background: #0056b3;
+              background: var(--primary-color);
+              color: var(--white-color);
               transform: translateY(-2px);
             }
           }
@@ -186,31 +196,37 @@ import { FormsModule } from '@angular/forms';
           label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #333;
+            color: var(--text-color);
             font-weight: 500;
           }
 
           input, textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #ddd;
+            border: 2px solid transparent;
             border-radius: 4px;
             font-size: 1rem;
-            transition: border-color 0.3s ease;
+            background: var(--white-color);
+            transition: all 0.3s ease;
 
             &:focus {
               outline: none;
-              border-color: #007bff;
+              border-color: var(--primary-color);
+              box-shadow: 0 0 0 2px rgba(100, 94, 90, 0.1);
             }
+          }
+
+          textarea {
+            resize: vertical;
           }
         }
 
         button {
           width: 100%;
           padding: 1rem;
-          background: #007bff;
-          color: white;
-          border: none;
+          background: var(--primary-color);
+          color: var(--white-color);
+          border: 2px solid var(--primary-color);
           border-radius: 4px;
           font-size: 1rem;
           font-weight: 500;
@@ -218,7 +234,8 @@ import { FormsModule } from '@angular/forms';
           transition: all 0.3s ease;
 
           &:hover:not(:disabled) {
-            background: #0056b3;
+            background: transparent;
+            color: var(--primary-color);
           }
 
           &:disabled {
@@ -239,6 +256,7 @@ import { FormsModule } from '@angular/forms';
 
         .contact-content {
           grid-template-columns: 1fr;
+          padding: 2rem;
         }
       }
     }
@@ -269,7 +287,7 @@ export class ContactComponent {
         subject: '',
         message: ''
       };
-      alert('Thank you for your message! I will get back to you soon.');
+      alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
     }, 1500);
   }
 }
