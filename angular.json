@@ -77,7 +77,8 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/landing-page/"
             },
             "development": {
               "optimization": false,
