@@ -1,14 +1,20 @@
 <header class="header">
-  <div class="container">    <a href="#" class="logo">
+  <div class="container">
+    <a href="#" class="logo">
       <img src="assets/images/KDLogoinv.png" alt="KD Social Memories Logo">
     </a>
-    <nav>
+    <button class="mobile-menu-btn" (click)="toggleMenu()" [class.active]="isMenuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav [class.active]="isMenuOpen">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portafolio</a></li>
-        <li><a href="#why-hire">¿Qué hacemos?</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact" class="cta-button">Contact</a></li>
+        <li><a href="#home" (click)="closeMenu()">Home</a></li>
+        <li><a href="#portfolio" (click)="closeMenu()">Portafolio</a></li>
+        <li><a href="#why-hire" (click)="closeMenu()">¿Qué hacemos?</a></li>
+        <li><a href="#testimonials" (click)="closeMenu()">Testimonials</a></li>
+        <li><a href="#contact" class="cta-button" (click)="closeMenu()">Contact</a></li>
       </ul>
     </nav>
   </div>
