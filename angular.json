@@ -78,7 +78,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/landing-page/"
+              "baseHref": "/KDSocialMemories/"
             },
             "development": {
               "optimization": false,

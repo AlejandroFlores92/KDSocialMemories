@@ -22,10 +22,10 @@ jobs:
       run: npm ci
 
     - name: Build
-      run: npm run build -- --configuration production --base-href=/landing-page/
+      run: npm run build -- --configuration production --base-href=/KDSocialMemories/
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: dist/landing-page/browser  # Adjust this path according to your Angular 17 output
+        folder: dist/browser  # Adjust this path according to your Angular 17 output
         branch: gh-pages
