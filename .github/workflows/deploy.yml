@@ -27,5 +27,5 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: dist/browser  # Adjust this path according to your Angular 17 output
+        folder: dist/landing-page/browser  # Adjust this path according to your Angular 17 output
         branch: gh-pages
